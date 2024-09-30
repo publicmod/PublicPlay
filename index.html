@@ -3,179 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generador de Plantilla HTML</title>
+    <title>Public Play</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+        body, html {
             margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 600px;
-            background-color: white;
-            margin: 0 auto;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        h2 {
-            text-align: center;
-        }
-        form {
+            padding: 0;
+            height: 100%;
+            background-color: #FF3B30;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
         }
-        label {
-            margin-top: 10px;
-            font-weight: bold;
-        }
-        input[type="text"], input[type="date"], textarea, select {
-            padding: 10px;
-            margin-top: 5px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            width: 100%;
-        }
-        textarea {
-            resize: vertical;
-        }
-        button {
-            padding: 10px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            margin-top: 20px;
+        .centered-button {
+            background-color: white;
+            border-radius: 50%;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             cursor: pointer;
-            font-size: 16px;
+            transition: transform 0.3s;
         }
-        button:hover {
-            background-color: #0056b3;
+        .centered-button:hover {
+            transform: scale(1.1);
         }
-        .output {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #e9ecef;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-family: monospace;
-            white-space: pre-wrap;
-        }
-        img {
-            width: 100%;
+        .centered-button img {
+            width: 150px;
             height: auto;
-            border-radius: 10px;
         }
     </style>
 </head>
 <body>
-
-<div class="container">
-    <h2>Generador de Plantilla HTML</h2>
-    <form id="generatorForm">
-        <label for="imgUrl">URL de la imagen:</label>
-        <input type="text" id="imgUrl" placeholder="Ingresa la URL de la imagen principal">
-
-        <label for="titulo">Título de la película:</label>
-        <input type="text" id="titulo" placeholder="Ingresa el título de la película">
-
-        <label for="lenguaje">Lenguaje:</label>
-        <input type="text" id="lenguaje" placeholder="Ingresa el lenguaje (ej. Castellano)">
-
-        <label for="duracion">Duración:</label>
-        <input type="text" id="duracion" placeholder="Ingresa la duración (ej. 2h 7m)">
-
-        <label for="fechaLanzamiento">Fecha de lanzamiento:</label>
-        <input type="date" id="fechaLanzamiento">
-
-        <label for="aptoPublico">Apto para:</label>
-        <select id="aptoPublico">
-            <option value="Apto para todos los públicos">Apto para todos los públicos</option>
-            <option value="No apto para menores de 18 años">No apto para menores de 18 años</option>
-        </select>
-
-        <label for="directores">Directores:</label>
-        <input type="text" id="directores" placeholder="Ingresa los directores (separados por comas)">
-
-        <label for="actores">Actores:</label>
-        <input type="text" id="actores" placeholder="Ingresa los actores (separados por comas)">
-
-        <label for="urlTrailer">URL del Trailer:</label>
-        <input type="text" id="urlTrailer" placeholder="Ingresa la URL del trailer">
-
-        <label for="urlOnline">URL para ver online:</label>
-        <input type="text" id="urlOnline" placeholder="Ingresa la URL para ver online">
-
-        <label for="sinopsis">Sinopsis:</label>
-        <textarea id="sinopsis" rows="4" placeholder="Ingresa la sinopsis"></textarea>
-
-        <button type="button" onclick="generarHTML()">Generar HTML</button>
-    </form>
-
-    <div class="output" id="output"></div>
-</div>
-
-<script>
-function generarHTML() {
-    const imgUrl = document.getElementById("imgUrl").value;
-    const titulo = document.getElementById("titulo").value;
-    const lenguaje = document.getElementById("lenguaje").value;
-    const duracion = document.getElementById("duracion").value;
-    const fechaLanzamiento = document.getElementById("fechaLanzamiento").value;
-    const aptoPublico = document.getElementById("aptoPublico").value;
-    const directores = document.getElementById("directores").value;
-    const actores = document.getElementById("actores").value;
-    const urlTrailer = document.getElementById("urlTrailer").value;
-    const urlOnline = document.getElementById("urlOnline").value;
-    const sinopsis = document.getElementById("sinopsis").value;
-
-    const htmlGenerado = `
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${titulo}</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Enlace al archivo CSS -->
-</head>
-<body>
-
-<div class="container">
-    <img src="${imgUrl}" alt="Imagen de ${titulo}" />
-
-    <div class="title">${titulo}</div>
-
-    <div class="language">
-        ${lenguaje} <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg" alt="Bandera de ${lenguaje}">
+    <div class="centered-button" onclick="window.location.href='https://www.otrapagina.com';">
+        <img src="ruta/a/tu/imagen.png" alt="Public Play">
     </div>
-
-    <div class="buttons">
-        <a href="${urlTrailer}">Ver Trailer</a>
-        <a href="${urlOnline}">Ver Online</a>
-    </div>
-
-    <div class="info">
-        <p>Duración: <span>${duracion}</span></p>
-        <p>Fecha de estreno: <span>${fechaLanzamiento}</span></p>
-        <p>${aptoPublico}</p>
-        <p>Directores: <span>${directores}</span></p>
-        <p>Actores: <span>${actores}</span></p>
-    </div>
-
-    <div class="sinopsis">
-        <p>Sinopsis: <span>${sinopsis}</span></p>
-    </div>
-</div>
-
-</body>
-</html>
-    `;
-
-    document.getElementById("output").textContent = htmlGenerado;
-}
-</script>
-
 </body>
 </html>
