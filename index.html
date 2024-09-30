@@ -30,7 +30,7 @@
             margin-top: 10px;
             font-weight: bold;
         }
-        input[type="text"], textarea {
+        input[type="text"], input[type="date"], textarea, select {
             padding: 10px;
             margin-top: 5px;
             font-size: 16px;
@@ -73,6 +73,27 @@
         <label for="titulo">Título de la película:</label>
         <input type="text" id="titulo" placeholder="Ingresa el título de la película">
 
+        <label for="lenguaje">Lenguaje:</label>
+        <input type="text" id="lenguaje" placeholder="Ingresa el lenguaje (ej. Castellano)">
+
+        <label for="duracion">Duración:</label>
+        <input type="text" id="duracion" placeholder="Ingresa la duración (ej. 2h 7m)">
+
+        <label for="fechaLanzamiento">Fecha de lanzamiento:</label>
+        <input type="date" id="fechaLanzamiento">
+
+        <label for="aptoPublico">Apto para:</label>
+        <select id="aptoPublico">
+            <option value="Apto para todos los públicos">Apto para todos los públicos</option>
+            <option value="No apto para menores de 18 años">No apto para menores de 18 años</option>
+        </select>
+
+        <label for="directores">Directores:</label>
+        <input type="text" id="directores" placeholder="Ingresa los directores (separados por comas)">
+
+        <label for="actores">Actores:</label>
+        <input type="text" id="actores" placeholder="Ingresa los actores (separados por comas)">
+
         <label for="urlTrailer">URL del Trailer:</label>
         <input type="text" id="urlTrailer" placeholder="Ingresa la URL del trailer">
 
@@ -91,6 +112,12 @@
 <script>
 function generarHTML() {
     const titulo = document.getElementById("titulo").value;
+    const lenguaje = document.getElementById("lenguaje").value;
+    const duracion = document.getElementById("duracion").value;
+    const fechaLanzamiento = document.getElementById("fechaLanzamiento").value;
+    const aptoPublico = document.getElementById("aptoPublico").value;
+    const directores = document.getElementById("directores").value;
+    const actores = document.getElementById("actores").value;
     const urlTrailer = document.getElementById("urlTrailer").value;
     const urlOnline = document.getElementById("urlOnline").value;
     const sinopsis = document.getElementById("sinopsis").value;
@@ -108,14 +135,22 @@ function generarHTML() {
 
 <div class="container">
     <div class="title">${titulo}</div>
-    
+
     <div class="language">
-        Castellano <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg" alt="Bandera de España">
+        ${lenguaje} <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg" alt="Bandera de ${lenguaje}">
     </div>
 
     <div class="buttons">
         <a href="${urlTrailer}">Ver Trailer</a>
         <a href="${urlOnline}">Ver Online</a>
+    </div>
+
+    <div class="info">
+        <p>Duración: <span>${duracion}</span></p>
+        <p>Fecha de estreno: <span>${fechaLanzamiento}</span></p>
+        <p>${aptoPublico}</p>
+        <p>Directores: <span>${directores}</span></p>
+        <p>Actores: <span>${actores}</span></p>
     </div>
 
     <div class="sinopsis">
@@ -127,4 +162,9 @@ function generarHTML() {
 </html>
     `;
 
-    document.getElementById("output").textContent =
+    document.getElementById("output").textContent = htmlGenerado;
+}
+</script>
+
+</body>
+</html>
