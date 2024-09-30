@@ -43,6 +43,16 @@
         .results div:hover {
             background-color: #f1f1f1;
         }
+        .output-container {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            max-width: 100%;
+            height: 300px; /* Altura fija para el contenedor de salida */
+            overflow: auto; /* Desplazamiento si el contenido excede la altura */
+        }
     </style>
 </head>
 <body>
@@ -51,6 +61,8 @@
     <input type="text" id="searchInput" placeholder="Buscar archivos HTML..." onkeyup="filterResults()">
     <div class="results" id="results"></div>
 </div>
+
+<div class="output-container" id="outputContainer"></div> <!-- Contenedor para mostrar el contenido HTML -->
 
 <script>
 const githubRepoOwner = 'publicmod';  // Reemplaza con tu usuario de GitHub
@@ -109,8 +121,8 @@ function displayResults(files) {
         const fileDiv = document.createElement('div');
         fileDiv.textContent = file.formattedName; // Muestra el nombre formateado sin extensión ni guiones
         fileDiv.onclick = () => {
-            // Abrir el archivo desde el repo de GitHub con su nombre original
-            window.location.href = `https://raw.githubusercontent.com/${githubRepoOwner}/${githubRepoName}/main/${githubRepoPath}/${file.originalName}`;
+            // Cargar el archivo desde el repo de GitHub y mostrar su contenido en el contenedor de salida
+            loadFileContent(file.originalName);
         };
         resultsDiv.appendChild(fileDiv);
     });
@@ -123,6 +135,16 @@ function displayResults(files) {
     }
 
     resultsDiv.style.display = files.length > 0 ? 'block' : 'none'; // Mostrar u ocultar resultados
+}
+
+// Cargar el contenido del archivo HTML y mostrarlo en el contenedor de salida
+async function loadFileContent(fileName) {
+    const fileUrl = `https://raw.githubusercontent.com/${githubRepoOwner}/${githubRepoName}/main/${githubRepoPath}/${fileName}`;
+    const response = await fetch(fileUrl);
+    const content = await response.text(); // Obtener el contenido del archivo
+
+    // Mostrar el contenido en el contenedor de salida
+    document.getElementById('outputContainer').innerHTML = content;
 }
 
 // Llama a la función para obtener los archivos al cargar la página
