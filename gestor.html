@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buscador de Archivos HTML</title>
+    <link rel="stylesheet" href="style.css">  <!-- Ruta a tu archivo CSS -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -110,7 +111,7 @@ function displayResults(files) {
         fileDiv.textContent = file.formattedName; // Muestra el nombre formateado sin extensión ni guiones
         fileDiv.onclick = () => {
             // Redirigir a la URL del archivo HTML para ejecutarlo
-           window.location.href = `publicmod.github.io/PublicPlay/${githubRepoPath}/${file.originalName}`;
+            window.location.href = `https://publicmod.github.io/PublicPlay/datos/${file.originalName}`;
         };
         resultsDiv.appendChild(fileDiv);
     });
