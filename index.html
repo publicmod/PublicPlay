@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Public PLay Template</title>
+    <title>Generador de Plantilla HTML</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -63,6 +63,11 @@
             font-family: monospace;
             white-space: pre-wrap;
         }
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
@@ -70,6 +75,9 @@
 <div class="container">
     <h2>Generador de Plantilla HTML</h2>
     <form id="generatorForm">
+        <label for="imgUrl">URL de la imagen:</label>
+        <input type="text" id="imgUrl" placeholder="Ingresa la URL de la imagen principal">
+
         <label for="titulo">Título de la película:</label>
         <input type="text" id="titulo" placeholder="Ingresa el título de la película">
 
@@ -111,6 +119,7 @@
 
 <script>
 function generarHTML() {
+    const imgUrl = document.getElementById("imgUrl").value;
     const titulo = document.getElementById("titulo").value;
     const lenguaje = document.getElementById("lenguaje").value;
     const duracion = document.getElementById("duracion").value;
@@ -134,6 +143,8 @@ function generarHTML() {
 <body>
 
 <div class="container">
+    <img src="${imgUrl}" alt="Imagen de ${titulo}" />
+
     <div class="title">${titulo}</div>
 
     <div class="language">
