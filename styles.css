@@ -12,6 +12,14 @@ body {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Evitar desbordamiento del contenido */
+}
+
+img {
+    max-width: 100%;
+    height: auto; /* Mantener la proporción de la imagen */
+    display: block; /* Eliminar espacios adicionales debajo de la imagen */
+    margin: 0 auto; /* Centrar la imagen dentro del contenedor */
 }
 
 .title {
