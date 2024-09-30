@@ -8,11 +8,11 @@
         body {
             font-family: Arial, sans-serif;
             display: flex;
-            background-color: #FF3B30;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
+            background-color: #FF3B30;
         }
         .search-container {
             width: 50%;
@@ -34,6 +34,7 @@
             border: 1px solid #ccc;
             border-top: none;
             z-index: 1;
+            display: none; /* Ocultar por defecto */
         }
         .results div {
             padding: 10px;
@@ -47,7 +48,7 @@
 <body>
 
 <div class="search-container">
-    <input type="text" id="searchInput" placeholder="Buscar Peliculas..." onkeyup="filterResults()">
+    <input type="text" id="searchInput" placeholder="Buscar archivos HTML..." onkeyup="filterResults()">
     <div class="results" id="results"></div>
 </div>
 
@@ -87,6 +88,13 @@ function formatFileName(fileName) {
 // Filtrar resultados con base en el texto ingresado
 function filterResults() {
     const input = document.getElementById('searchInput').value.toLowerCase();
+    const resultsDiv = document.getElementById('results');
+
+    if (input.length === 0) {
+        resultsDiv.style.display = 'none'; // Ocultar resultados si no hay texto
+        return;
+    }
+
     const filteredFiles = formattedFiles.filter(file => file.formattedName.toLowerCase().includes(input));
 
     displayResults(filteredFiles);
@@ -107,11 +115,14 @@ function displayResults(files) {
         resultsDiv.appendChild(fileDiv);
     });
 
+    // Si hay resultados, mostrar la lista; si no, ocultar
     if (files.length === 0) {
         const noResultDiv = document.createElement('div');
         noResultDiv.textContent = 'No se encontraron coincidencias.';
         resultsDiv.appendChild(noResultDiv);
     }
+
+    resultsDiv.style.display = files.length > 0 ? 'block' : 'none'; // Mostrar u ocultar resultados
 }
 
 // Llama a la función para obtener los archivos al cargar la página
@@ -120,4 +131,3 @@ fetchGitHubFiles();
 
 </body>
 </html>
-
