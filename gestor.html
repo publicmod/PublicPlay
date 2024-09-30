@@ -110,7 +110,7 @@ function displayResults(files) {
         fileDiv.textContent = file.formattedName; // Muestra el nombre formateado sin extensión ni guiones
         fileDiv.onclick = () => {
             // Redirigir a la URL del archivo HTML para ejecutarlo
-            window.location.href = `https://raw.githubusercontent.com/${githubRepoOwner}/${githubRepoName}/main/${githubRepoPath}/${file.originalName}`;
+           window.location.href = `https://yourdomain.com/${githubRepoPath}/${file.originalName}`;
         };
         resultsDiv.appendChild(fileDiv);
     });
