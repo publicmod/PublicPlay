@@ -1,1 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador de Archivos HTML</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .search-container {
+            width: 50%;
+            position: relative;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 18px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .results {
+            position: absolute;
+            width: 100%;
+            max-height: 200px;
+            overflow-y: auto;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-top: none;
+            z-index: 1;
+        }
+        .results div {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .results div:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+
+<div class="search-container">
+    <input type="text" id="searchInput" placeholder="Buscar archivos HTML..." onkeyup="filterResults()">
+    <div class="results" id="results"></div>
+</div>
+
+<script>
+const githubRepoOwner = 'TUNOMBREDEUSUARIO';  // Reemplaza con tu usuario de GitHub
+const githubRepoName = 'TUNOMBREDEPROYECTO';  // Reemplaza con el nombre de tu repositorio
+const githubRepoPath = 'RUTA/DE/TU/CARPETA';  // Reemplaza con la ruta dentro del repositorio (si es la raíz, deja vacío)
+const githubApiUrl = `https://api.github.com/repos/${githubRepoOwner}/${githubRepoName}/contents/${githubRepoPath}`;
+
+// Lista que contendrá archivos con su nombre formateado
+let formattedFiles = [];
+
+// Función para obtener los archivos desde la API de GitHub
+async function fetchGitHubFiles() {
+    const response = await fetch(githubApiUrl);
+    const files = await response.json();
+
+    // Filtrar solo archivos .html y formatear nombres
+    formattedFiles = files
+        .filter(file => file.name.endsWith('.html'))
+        .map(file => {
+            return {
+                originalName: file.name, // nombre original
+                formattedName: formatFileName(file.name) // nombre formateado sin extensión y guiones
+            };
+        });
+
+    // Mostrar todos los archivos inicialmente
+    displayResults(formattedFiles);
+}
+
+// Formatea el nombre de archivo: quita la extensión y reemplaza guiones con espacios
+function formatFileName(fileName) {
+    return fileName.replace('.html', '').replace(/-/g, ' ');
+}
+
+// Filtrar resultados con base en el texto ingresado
+function filterResults() {
+    const input = document.getElementById('searchInput').value.toLowerCase();
+    const filteredFiles = formattedFiles.filter(file => file.formattedName.toLowerCase().includes(input));
+
+    displayResults(filteredFiles);
+}
+
+// Mostrar los resultados en la página
+function displayResults(files) {
+    const resultsDiv = document.getElementById('results');
+    resultsDiv.innerHTML = '';
+
+    files.forEach(file => {
+        const fileDiv = document.createElement('div');
+        fileDiv.textContent = file.formattedName; // Muestra el nombre formateado sin extensión ni guiones
+        fileDiv.onclick = () => {
+            // Abrir el archivo desde el repo de GitHub con su nombre original
+            window.location.href = `https://raw.githubusercontent.com/${githubRepoOwner}/${githubRepoName}/main/${githubRepoPath}/${file.originalName}`;
+        };
+        resultsDiv.appendChild(fileDiv);
+    });
+
+    if (files.length === 0) {
+        const noResultDiv = document.createElement('div');
+        noResultDiv.textContent = 'No se encontraron coincidencias.';
+        resultsDiv.appendChild(noResultDiv);
+    }
+}
+
+// Llama a la función para obtener los archivos al cargar la página
+fetchGitHubFiles();
+</script>
+
+</body>
+</html>
 
