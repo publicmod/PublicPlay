@@ -6,7 +6,7 @@ body {
 }
 
 .container {
-    max-width: 600px;
+    max-width: 400px;
     background-color: white;
     margin: 0 auto;
     padding: 20px;
@@ -14,74 +14,24 @@ body {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-h2 {
-    text-align: center;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-label {
-    margin-top: 10px;
-    font-weight: bold;
-}
-
-input[type="text"], input[type="date"], textarea, select {
-    padding: 10px;
-    margin-top: 5px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 100%;
-}
-
-textarea {
-    resize: vertical;
-}
-
-button {
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    margin-top: 20px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-.output {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #e9ecef;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-family: monospace;
-    white-space: pre-wrap;
-}
-
-img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-}
-
 .title {
     font-size: 24px;
     font-weight: bold;
-    text-align: center;
     margin-top: 10px;
+    text-align: center;
 }
 
 .language {
-    text-align: center;
-    margin: 10px 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.language img {
+    width: 20px;
+    margin-left: 5px;
 }
 
 .buttons {
@@ -90,10 +40,40 @@ img {
     margin: 20px 0;
 }
 
+.buttons a {
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 2px solid black;
+    border-radius: 20px;
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.buttons a:hover {
+    background-color: black;
+    color: white;
+}
+
 .info {
-    margin: 10px 0;
+    margin-bottom: 20px;
+}
+
+.info p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 5px 0;
+    font-weight: bold;
+}
+
+.info span {
+    font-weight: normal;
 }
 
 .sinopsis {
-    margin: 10px 0;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #666;
 }
