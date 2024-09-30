@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deadpool y Lobezno (2024)</title>
+    <title>Generador de Plantilla HTML</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,100 +12,119 @@
             padding: 20px;
         }
         .container {
-            max-width: 400px;
+            max-width: 600px;
             background-color: white;
             margin: 0 auto;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         }
-        .title {
-            font-size: 24px;
-            font-weight: bold;
-            margin-top: 10px;
+        h2 {
             text-align: center;
         }
-        .language {
+        form {
             display: flex;
-            justify-content: flex-end;
-            align-items: center;
+            flex-direction: column;
+        }
+        label {
             margin-top: 10px;
-            font-size: 18px;
-        }
-        .language img {
-            width: 20px;
-            margin-left: 5px;
-        }
-        .buttons {
-            display: flex;
-            justify-content: space-around;
-            margin: 20px 0;
-        }
-        .buttons a {
-            text-decoration: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border: 2px solid black;
-            border-radius: 20px;
-            background-color: white;
-            color: black;
             font-weight: bold;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
         }
-        .buttons a:hover {
-            background-color: black;
+        input[type="text"], textarea {
+            padding: 10px;
+            margin-top: 5px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+        }
+        textarea {
+            resize: vertical;
+        }
+        button {
+            padding: 10px;
+            background-color: #007bff;
             color: white;
-        }
-        .info {
-            margin-bottom: 20px;
-        }
-        .info p {
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            cursor: pointer;
             font-size: 16px;
-            line-height: 1.5;
-            margin: 5px 0;
-            font-weight: bold;
         }
-        .info span {
-            font-weight: normal;
+        button:hover {
+            background-color: #0056b3;
         }
-        .sinopsis {
-            font-size: 16px;
-            line-height: 1.5;
-            color: #666;
+        .output {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9ecef;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre-wrap;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- Eliminamos temporalmente la imagen -->
-    
-    <div class="title">Deadpool y Lobezno (2024)</div>
+    <h2>Generador de Plantilla HTML</h2>
+    <form id="generatorForm">
+        <label for="titulo">Título de la película:</label>
+        <input type="text" id="titulo" placeholder="Ingresa el título de la película">
+
+        <label for="urlTrailer">URL del Trailer:</label>
+        <input type="text" id="urlTrailer" placeholder="Ingresa la URL del trailer">
+
+        <label for="urlOnline">URL para ver online:</label>
+        <input type="text" id="urlOnline" placeholder="Ingresa la URL para ver online">
+
+        <label for="sinopsis">Sinopsis:</label>
+        <textarea id="sinopsis" rows="4" placeholder="Ingresa la sinopsis"></textarea>
+
+        <button type="button" onclick="generarHTML()">Generar HTML</button>
+    </form>
+
+    <div class="output" id="output"></div>
+</div>
+
+<script>
+function generarHTML() {
+    const titulo = document.getElementById("titulo").value;
+    const urlTrailer = document.getElementById("urlTrailer").value;
+    const urlOnline = document.getElementById("urlOnline").value;
+    const sinopsis = document.getElementById("sinopsis").value;
+
+    const htmlGenerado = `
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${titulo}</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Enlace al archivo CSS -->
+</head>
+<body>
+
+<div class="container">
+    <div class="title">${titulo}</div>
     
     <div class="language">
         Castellano <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg" alt="Bandera de España">
     </div>
 
     <div class="buttons">
-        <a href="#">Ver Trailer</a>
-        <a href="#">Ver Online</a>
-    </div>
-
-    <div class="info">
-        <p>Duración: <span>2h 7m</span></p>
-        <p>Fecha de estreno: <span>25 julio 2024</span></p>
-        <p>Acción</p>
-        <p>Comedia</p>
-        <p>Ciencia ficción</p>
-        <p>No recomendada para menores de 18 años</p>
-        <p>Directores: <span>Shawn Levy</span></p>
-        <p>Actores: <span>Karan Soni, Rob Delaney, Ryan Reynolds, Matthew Macfadyen, Hugh Jackman, Morena Baccarin, Leslie Uggams, Emma Corrin</span></p>
+        <a href="${urlTrailer}">Ver Trailer</a>
+        <a href="${urlOnline}">Ver Online</a>
     </div>
 
     <div class="sinopsis">
-        <p>Sinopsis: <span>Aquí va la sinopsis de la película...</span></p>
+        <p>Sinopsis: <span>${sinopsis}</span></p>
     </div>
 </div>
 
 </body>
 </html>
+    `;
+
+    document.getElementById("output").textContent =
