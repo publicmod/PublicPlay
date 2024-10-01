@@ -30,16 +30,10 @@ img {
 }
 
 .language {
-    display: flex;
-    justify-content: flex-end;
     align-items: center;
+    text-align: center;
     margin-top: 10px;
     font-size: 18px;
-}
-
-.language img {
-    width: 20px;
-    margin-left: 5px;
 }
 
 .buttons {
