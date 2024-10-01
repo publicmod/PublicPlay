@@ -18,6 +18,7 @@
         .search-container {
             width: 50%;
             position: relative;
+            text-align: center;
         }
         input[type="text"] {
             width: 100%;
@@ -44,11 +45,19 @@
         .results div:hover {
             background-color: #f1f1f1;
         }
+        /* Estilo para la imagen */
+        .logo {
+            width: 80px; /* Ajusta el tamaño de la imagen */
+            margin-bottom: 10px; /* Espacio entre la imagen y la barra de búsqueda */
+        }
     </style>
 </head>
 <body>
 
 <div class="search-container">
+    <!-- Imagen encima de la barra de búsqueda -->
+    <img src="https://i.imgur.com/FMHisvu.png" alt="Logo" class="logo">
+
     <input type="text" id="searchInput" placeholder="Buscar Películas..." onkeyup="filterResults()">
     <div class="results" id="results"></div>
 </div>
