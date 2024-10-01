@@ -76,9 +76,6 @@ async function fetchGitHubFiles() {
                 formattedName: formatFileName(file.name) // nombre formateado sin extensión y guiones
             };
         });
-
-    // Mostrar todos los archivos inicialmente
-    displayResults(formattedFiles);
 }
 
 // Formatea el nombre de archivo: quita la extensión y reemplaza guiones con espacios
